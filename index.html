@@ -66,7 +66,7 @@ h1.ht .dim{color:#3a3a3a;}h1.ht .acc{color:var(--purple);}
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;          /* ← cover para que llene */
+  object-fit: cover;
   object-position: center;
   z-index: 1;
   transition: transform .4s ease;
@@ -152,12 +152,93 @@ h1.ht .dim{color:#3a3a3a;}h1.ht .acc{color:var(--purple);}
 .banner-sub{color:var(--text3);font-size:0.88rem;margin-bottom:1.2rem;}
 .trust-icons{display:flex;gap:2rem;flex-shrink:0;}
 .trust-item{display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--text4);font-size:0.72rem;text-align:center;}
+
+/* ── SOBRE MÍ ───────────────────────────────────────── */
+.sobre-mi {
+  padding: 4rem 2.5rem;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.sobre-mi-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.sobre-mi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+.sobre-intro {
+  font-size: 1rem;
+  color: var(--text3);
+  line-height: 1.8;
+}
+.sobre-diffs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.sobre-diff-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.sobre-diff-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.sobre-diff-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.sobre-diff-desc {
+  font-size: 0.78rem;
+  color: var(--text3);
+  line-height: 1.5;
+}
+.sobre-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.sobre-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--purple);
+  letter-spacing: 1px;
+}
+.sobre-stat-label {
+  font-size: 0.7rem;
+  color: var(--text4);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.sobre-cta {
+  margin-top: 2rem;
+}
+@media (max-width: 768px) {
+  .sobre-mi-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .sobre-stats { flex-wrap: wrap; gap: 1.5rem; }
+}
+
 footer{background:#050508;border-top:1px solid #111;padding:3rem 2.5rem;display:grid;grid-template-columns:1.5fr 1fr 1.2fr 1.3fr;gap:2rem;}
 .foot-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;margin-bottom:0.7rem;}
 .foot-logo span{color:var(--purple);}
 .foot-desc{color:var(--text4);font-size:0.82rem;line-height:1.6;margin-bottom:1.2rem;}
 .foot-socials{display:flex;gap:8px;}
-.soc-btn{width:34px;height:34px;border-radius:50%;background:#111;border:1px solid #222;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s;}
+.soc-btn{width:34px;height:34px;border-radius:50%;background:#111;border:1px solid #222;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s;text-decoration:none;}
 .soc-btn:hover{border-color:var(--purple);}
 .soc-btn svg{width:14px;height:14px;fill:#666;}
 .foot-col h4{font-size:0.68rem;font-weight:700;letter-spacing:3px;color:#333;text-transform:uppercase;margin-bottom:1rem;}
@@ -186,34 +267,8 @@ footer{background:#050508;border-top:1px solid #111;padding:3rem 2.5rem;display:
 <body>
 
 <script>
-// ╔══════════════════════════════════════════════════════════════╗
-// ║           CONFIGURACIÓN GENERAL — EDITAR AQUÍ               ║
-// ╚══════════════════════════════════════════════════════════════╝
+const WHATSAPP = '50664794908';
 
-const WHATSAPP = '50664794908'; // ← Tu número (con código de país, sin +)
-
-// ╔══════════════════════════════════════════════════════════════╗
-// ║   BASE DE DATOS DE PRODUCTOS                                ║
-// ║                                                             ║
-// ║   Para agregar un producto nuevo:                           ║
-// ║   1. Copiá un objeto existente                              ║
-// ║   2. Cambiá los valores                                     ║
-// ║   3. Asegurate de usar un id único                          ║
-// ║                                                             ║
-// ║   CAMPOS:                                                   ║
-// ║   id       → número único (no repetir)                      ║
-// ║   name     → nombre del producto                            ║
-// ║   brand    → marca                                          ║
-// ║   category → 'moda' o 'tech'                                ║
-// ║   sub      → subcategoría (ver lista en CATEGORIES abajo)   ║
-// ║   price    → precio en número (ej: 45 = $45)               ║
-// ║   desc     → descripción corta                              ║
-// ║   image    → URL de imagen (o '' para usar emoji)           ║
-// ║   emoji    → emoji de respaldo si no hay imagen             ║
-// ║   sizes    → array de tallas (['S','M','L'] o [] si no aplica) ║
-// ║   stock    → true = disponible, false = agotado             ║
-// ╚══════════════════════════════════════════════════════════════╝
-// sueters - camisas - pantalones - zapatos - gorras 
 const allProducts = [
 
   // ─── MODA / SUÉTERES ──────────────────────────────────────────
@@ -240,7 +295,6 @@ const allProducts = [
   { id:6, name:'Sueta con Zipper ', brand:'Urban', category:'moda', sub:'sueters',
     price:"15.000" , desc:'Suéter con Zipper básica perfecta para combinar oufits.',
     image:'hoddie_negra_zipper.png', emoji:'🧥', sizes:['M'], stock:true },
-
 
   // ─── MODA / CAMISAS ───────────────────────────────────────────
   { id:10, name:'Camisa Casual Blanca de Travis Scott', brand:'Tryppy', category:'moda', sub:'camisas',
@@ -301,10 +355,6 @@ const allProducts = [
     price:"24.500", desc:'Tenis Unisex Le Coq Racerone 2 Spe Makeup con gamusa frontal.',
     image:'lecoq_negras.jpg', emoji:'👟', sizes:['6.5'], stock:true },
 
-
-
-  //Agregar id 9 
-
   // ─── MODA / GORRAS ────────────────────────────────────────────
   { id:40, name:'Gorra Lakers', brand:'New Era', category:'moda', sub:'gorras',
     price:"16.000", desc:'Gorra de los Angeles Lakers color negra ajustable.',
@@ -356,14 +406,7 @@ const allProducts = [
     price:"40.000", desc:'Está en muy buen estado, casi nuevo.',
     image:'a21s.png', emoji:'📱', sizes:[], stock:true }
 
-]; // ← FIN DEL ARRAY — agregar productos arriba de esta línea
-
-
-// ╔══════════════════════════════════════════════════════════════╗
-// ║   CATEGORÍAS Y SUBCATEGORÍAS                                ║
-// ║   Podés agregar nuevas subcategorías aquí y en los          ║
-// ║   productos usar el mismo id de sub.                        ║
-// ╚══════════════════════════════════════════════════════════════╝
+];
 
 const CATEGORIES = [
   {
@@ -382,7 +425,8 @@ const CATEGORIES = [
     iconClass: 'cat-icon-tech', badgeClass: 'badge-tech', pillClass: 'pill-tech',
     subs: [
       { id:'baterias',  label:'Baterías inalámbricas' },
-      { id:'celulares', label:'Celulares' }
+      { id:'celulares', label:'Celulares' },
+      { id:'otros',     label:'Otros' }
     ]
   }
 ];
@@ -394,8 +438,7 @@ const CATEGORIES = [
   <ul class="nav-links">
     <li><a href="#" class="active">Inicio</a></li>
     <li><a href="#destacados">Productos</a></li>
-    <li><a href="#">Sobre mí</a></li>
-    <li><a href="#">Blog</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <button class="wa-btn" id="wa-nav">
@@ -419,29 +462,24 @@ const CATEGORIES = [
     </div>
     <div class="hero-stats">
       <div><div class="stat-num" id="stat-total">0</div><div class="stat-label">Productos</div></div>
-      <div><div class="stat-num">500+</div><div class="stat-label">Clientes</div></div>
-      <div><div class="stat-num" id="stat-cats">0</div><div class="stat-label">Categorías</div></div>
+      <div><div class="stat-num">50+</div><div class="stat-label">Clientes</div></div>
+      <div><div class="stat-num">7</div><div class="stat-label">Categorías</div></div>
     </div>
   </div>
-<div class="hero-grid">
-  <!-- Pantalón: columna izquierda, span 2 filas -->
-  <div class="hcard tall">
-    <img src="hoddies_general.png" class="hcard-img" alt="Hoddis">
-    <div class="hcard-overlay"><div class="hcard-label">Hoddies</div></div>
+  <div class="hero-grid">
+    <div class="hcard tall">
+      <img src="hoddies_general.png" class="hcard-img" alt="Hoddies">
+      <div class="hcard-overlay"><div class="hcard-label">Hoddies</div></div>
+    </div>
+    <div class="hcard short">
+      <img src="camisas_generales.png" class="hcard-img" alt="Camisas">
+      <div class="hcard-overlay"><div class="hcard-label">CAMISAS</div></div>
+    </div>
+    <div class="hcard short">
+      <img src="Gorras_general.png" class="hcard-img" alt="Gorras">
+      <div class="hcard-overlay"><div class="hcard-label">GORRAS</div></div>
+    </div>
   </div>
-
-  <!-- Camisa: fila 1, columna derecha -->
-  <div class="hcard short">
-    <img src="camisas_generales.png" class="hcard-img" alt="Camisas">
-    <div class="hcard-overlay"><div class="hcard-label">CAMISAS</div></div>
-  </div>
-
-  <!-- Gorras: fila 2, columna derecha -->
-  <div class="hcard short">
-    <img src="Gorras_general.png" class="hcard-img" alt="Gorras">
-    <div class="hcard-overlay"><div class="hcard-label">GORRAS</div></div>
-  </div>
-</div>
 </section>
 
 <!-- DESTACADOS -->
@@ -477,6 +515,73 @@ const CATEGORIES = [
   </div>
 </div>
 
+<!-- SOBRE MÍ -->
+<section class="sobre-mi" id="sobre-mi">
+  <div class="sobre-mi-inner">
+    <div class="stag">QUIÉNES SOMOS</div>
+    <div class="stitle">Sobre mí</div>
+    <div class="sobre-mi-grid">
+      <div>
+        <p class="sobre-intro">
+          Hola, soy parte de Store SK 👋<br><br>
+          Todo empezó con una idea simple: traer moda urbana de calidad directo a las personas, sin complicaciones y sin pagar de más. Store SK nació en Costa Rica con el objetivo de que cualquiera pueda vestir con estilo, sin importar el presupuesto.<br><br>
+          Atención directa, productos seleccionados a mano y envíos a todo el país. Así es como trabajamos.
+        </p>
+        <div class="sobre-stats">
+          <div>
+            <div class="sobre-stat-num" id="stat-sobre">0</div>
+            <div class="sobre-stat-label">Productos</div>
+          </div>
+          <div>
+            <div class="sobre-stat-num">50+</div>
+            <div class="sobre-stat-label">Clientes</div>
+          </div>
+          <div>
+            <div class="sobre-stat-num">7</div>
+            <div class="sobre-stat-label">Categorías</div>
+          </div>
+        </div>
+        <div class="sobre-cta">
+          <button class="btn-purple" id="wa-sobre">
+            <svg style="width:16px;height:16px;fill:#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.553 4.103 1.523 5.824L.057 23.5l5.81-1.447A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.574-.49-5.064-1.346l-.363-.215-3.447.859.924-3.35-.236-.38A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Hacer un pedido
+          </button>
+        </div>
+      </div>
+      <div class="sobre-diffs">
+        <div class="sobre-diff-item">
+          <div class="sobre-diff-icon">🛍️</div>
+          <div>
+            <div class="sobre-diff-title">Productos seleccionados a mano</div>
+            <div class="sobre-diff-desc">Cada hoodie, camiseta y gorra pasa por nuestra revisión antes de llegar a ti.</div>
+          </div>
+        </div>
+        <div class="sobre-diff-item">
+          <div class="sobre-diff-icon">💬</div>
+          <div>
+            <div class="sobre-diff-title">Atención directa y personal</div>
+            <div class="sobre-diff-desc">Nada de bots, hablás con nosotros directo por WhatsApp.</div>
+          </div>
+        </div>
+        <div class="sobre-diff-item">
+          <div class="sobre-diff-icon">🚚</div>
+          <div>
+            <div class="sobre-diff-title">Envíos rápidos y seguros</div>
+            <div class="sobre-diff-desc">A todo Costa Rica, con seguimiento de tu pedido.</div>
+          </div>
+        </div>
+        <div class="sobre-diff-item">
+          <div class="sobre-diff-icon">💰</div>
+          <div>
+            <div class="sobre-diff-title">Sin intermediarios</div>
+            <div class="sobre-diff-desc">Precios justos porque trabajamos directo con los proveedores.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer id="contacto">
   <div>
@@ -485,13 +590,11 @@ const CATEGORIES = [
     <div class="foot-socials">
       <div class="soc-btn" id="wa-foot"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.553 4.103 1.523 5.824L.057 23.5l5.81-1.447A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.574-.49-5.064-1.346l-.363-.215-3.447.859.924-3.35-.236-.38A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
       <a href="https://www.facebook.com/profile.php?id=100079276612330" target="_blank" class="soc-btn">
-    <svg viewBox="0 0 24 24">
-        <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.324v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
-
-</a>
+        <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.324v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+      </a>
       <a href="https://www.instagram.com/_s.sanchezz_27/" target="_blank" class="soc-btn">
         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-    </a>
+      </a>
     </div>
   </div>
   <div class="foot-col">
@@ -499,8 +602,7 @@ const CATEGORIES = [
     <ul>
       <li><a href="#">Inicio</a></li>
       <li><a href="#destacados">Productos</a></li>
-      <li><a href="#">Sobre mí</a></li>
-      <li><a href="#">Blog</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
   </div>
@@ -556,8 +658,9 @@ function buildCard(p, small=false){
 }
 
 // Stats
-document.getElementById('stat-total').textContent = allProducts.length+'+';
-document.getElementById('stat-cats').textContent = CATEGORIES.length;
+const totalProds = allProducts.length;
+document.getElementById('stat-total').textContent = totalProds+'+';
+document.getElementById('stat-sobre').textContent = totalProds+'+';
 
 // Featured: primeros 6 con stock
 document.getElementById('featured-grid').innerHTML =
@@ -607,7 +710,7 @@ document.getElementById('foot-cats').innerHTML =
 
 // WA links
 const waUrl = waLink('Hola! Quiero hacer un pedido');
-['wa-nav','wa-hero','wa-banner','wa-foot'].forEach(id=>{
+['wa-nav','wa-hero','wa-banner','wa-foot','wa-sobre'].forEach(id=>{
   const el=document.getElementById(id);
   if(el) el.addEventListener('click',()=>window.open(waUrl,'_blank'));
 });

@@ -253,7 +253,11 @@ const allProducts = [
 
   { id:12, name:'Camisa con estampado', brand:'Basics', category:'moda', sub:'camisas',
     price: "6.000" , desc:'Camisa con diseño de "Los Angeles" ',
-    image:'camisa_los_angeles.jpeg', emoji:'👕', sizes:['S'], stock:true },
+    image:'camisa_los_angeles.jpeg', emoji:'👕', sizes:['S'], stock:true },  
+
+  { id:13, name:'camisa_brasil', brand:'Basics', category:'moda', sub:'camisas',
+    price: "15.000" , desc:'Camisa de Brasil "sulimada" de buena calidad',
+    image:'camisa_brasil.jpeg', emoji:'👕', sizes:['S-L-M'], stock:true }, 
 
   // ─── MODA / PANTALONES ────────────────────────────────────────
   { id:20, name:'Pantalon Cargo', brand:'DGK', category:'moda', sub:'pantalones',
@@ -268,6 +272,28 @@ const allProducts = [
   { id:30, name:'Jordan 4', brand:'StepUp', category:'moda', sub:'zapatos',
     price:"20.000", desc:'Zapatillas color verde',
     image:'jordan4_green.png', emoji:'👟', sizes:['42'], stock:true },
+
+  { id:31, name:'Puma x Fast & Furious', brand:'LaFrancé', category:'moda', sub:'zapatos',
+    price:"85.000", desc:'Puma x Fast & Furious',
+    image:'tennis_fast.png', emoji:'👟', sizes:['42'], stock:false }, 
+  
+  { id:32, name:'strange_love', brand:'NIKE', category:'moda', sub:'zapatos',
+    price:"45.000", desc:'Colaboración icónica entre Nike SB y la marca de skate StrangeLove Skateboarding, lanzada originalmente para el Día de San Valentín en febrero de 2020.',
+    image:'strange_love.webp', emoji:'👟', sizes:['42'], stock:false },
+
+  { id:33, name:'Tennis blancas bajas', brand:'Le Coq Sportif', category:'moda', sub:'zapatos',
+    price:"25.000", desc:'Zapatillas Unisex court rooster blanco/azul oscuro Le Coq Sportif con gamusa frontal.',
+    image:'lecoq_blancas.webp', emoji:'👟', sizes:['42'], stock:true },
+
+  { id:34, name:'Tennis Azules', brand:'Le Coq Sportif', category:'moda', sub:'zapatos',
+    price:"25.000", desc:'Tenis Unisex Le Coq Racerone 2 Spe Makeup.',
+    image:'lecoq_azules.webp', emoji:'👟', sizes:['6.5'], stock:true },
+
+   { id:35, name:'Tennis negras', brand:'Le Coq Sportif', category:'moda', sub:'zapatos',
+    price:"25.000", desc:'Tenis Unisex Le Coq Racerone 2 Spe Makeup.',
+    image:'lecoq_negras.jpg', emoji:'👟', sizes:['6.5'], stock:true },
+
+
 
   //Agregar id 9 
 
@@ -288,14 +314,29 @@ const allProducts = [
     price:"17.000", desc:'Gorra New Era, cerrada. En color rojo con bordado frontal y lateral de alta calidad.',
     image:'gorra_roja_LA.png', emoji:'🧢', sizes:[57.7], stock:true },
 
-   { id:44, name:'Gorra Negra LA', brand:'New Era', category:'moda', sub:'gorras',
-    price:"20.000", desc:'Gorra New Era, cerrada. En color negra con bordado frontal de buena de alta calidad.',
-    image:'gorra_negra_LA.png', emoji:'🧢', sizes:[57.7], stock:true },
+  { id:44, name:'Gorra Negra LA', brand:'New Era', category:'moda', sub:'gorras',
+    price:"20.000", desc:'Gorra New Era, cerrada. En color negra con bordado frontal de alta calidad.',
+    image:'gorra_negra_LA.png', emoji:'🧢', sizes:[57.7], stock:true }, 
+  
+  { id:45, name:'Gorra NY con Rosas', brand:'New Era', category:'moda', sub:'gorras',
+    price:"20.000", desc:'Gorra New Era, cerrada. En color negra con bordado frontal de Rosas.',
+    image:'gorra_rosas_negra_NY.jpg', emoji:'🧢', sizes:[57.7], stock:false },
 
+  { id:46, name:'Gorra NY con Rosa', brand:'New Era', category:'moda', sub:'gorras',
+    price:"16.000", desc:'Gorra New Era, cerrada. En color roja con bordado frontal de Rosa.',
+    image:'gorra_roja_rosa_NY.avif', emoji:'🧢', sizes:[56.7], stock:false },
+
+  { id:47, name:'Gorra Azul Doggers', brand:'New Era', category:'moda', sub:'gorras',
+    price:"13.000", desc:'Gorra New Era, ajustable. En color azul con bordado lateral y frontal.',
+    image:'gorra_azul_doggers.jpg', emoji:'🧢', sizes:[], stock:false },
+
+  { id:48, name:'Gorra NY Blanca', brand:'New Era', category:'moda', sub:'gorras',
+    price:"15.000", desc:'Gorra New Era, ajustable. En color blanca.',
+    image:'gorra_blanca_NY.jfif', emoji:'🧢', sizes:[57.7], stock:false },
 
   // ─── TECH / BATERÍAS ──────────────────────────────────────────
   { id:50, name:'Power Bank / MagSafe 15W', brand:'ChargePro', category:'tech', sub:'baterias',
-    price:35, desc:'Batería portátil de alta capacidad con mucha duración y soporte para vehiculos, también se puede utilizar sin necesidad de fijarlo a algún lugar.',
+    price:"9.500", desc:'Batería portátil de alta capacidad con mucha duración y soporte para vehiculos, también se puede utilizar sin necesidad de fijarlo a algún lugar.',
     image:'bateria_inalambrica.png', emoji:'🔋', sizes:[], stock:true },
 
   // ─── TECH / CELULARES ─────────────────────────────────────────
@@ -565,3 +606,4 @@ const waUrl = waLink('Hola! Quiero hacer un pedido');
 </script>
 </body>
 </html>
+

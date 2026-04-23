@@ -319,10 +319,22 @@ const allProducts = [
 
   { id:15, name:'camisa Saprisa blanca Batman', brand:'Basics', category:'moda', sub:'camisas',
     price: "10.000" , desc:'Camisa de Saprisa con edición de Saprisa "sulimada" de buena calidad color blanca',
-    image:'camisa_saprisa_blanca.webp', emoji:'👕', sizes:['S-L-M'], stock:true },     
+    image:'camisa_saprisa_blanca.webp', emoji:'👕', sizes:['S-L-M'], stock:true },   
+    
+  { id:16, name:'Camisa Celeste Oversize', brand:'Basics', category:'moda', sub:'camisas',
+    price: "10.000" , desc:'Camisa con estampados con un diseño moderno y urbano, perfecto para un estilo casual.',
+    image:'camisa_celeste_93.png', emoji:'👕', sizes:['M'], stock:true },   
+    
+  { id:17, name:'Camisa Blanco con Negro Oversize', brand:'Basics', category:'moda', sub:'camisas',
+    price: "10.000" , desc:'Camisa con diseño delantero y trasero de tela fresca.',
+    image:'camisa_blanco_negro_66.png', emoji:'👕', sizes:['M'], stock:true },  
+ 
+  { id:18, name:'Camisa Blanco con Celeste Oversize', brand:'Basics', category:'moda', sub:'camisas',
+    price: "10.000" , desc:'Diseño moderno y urbano con un diseño retro-sport.',
+    image:'camisa_blanca_celeste_80.png', emoji:'👕', sizes:['M'], stock:true },
 
   // ─── MODA / PANTALONES ────────────────────────────────────────
-  { id:20, name:'Pantalon Cargo DGK Negro', brand:'DGK', category:'moda', sub:'pantalones',
+  { id:20, name:'Pantalon Cargo GK Negro', brand:'DGK', category:'moda', sub:'pantalones',
     price:"20.000", desc:'Pantalón tipo Cargo de tela gruesa color negro con cordones en los ruedos.',
     image:'pantalon_cargo_negro_doblado.jpeg', emoji:'👖', sizes:['28'], stock:true },
 
@@ -392,23 +404,35 @@ const allProducts = [
     price:"15.000", desc:'Gorra New Era, ajustable. En color blanca.',
     image:'gorra_blanca_NY.jfif', emoji:'🧢', sizes:[57.7], stock:false },
 
+   // ─── MODA / GORROS ────────────────────────────────────────────
+
+  { id:55, name:'Gorro Gravity Visions', brand:'Gravity Visions', category:'moda', sub:'gorros',
+    price:"8.000", desc:'Gorro con diseño frontal y trasero increible para combinar.',
+    image:'gorro_visions.png', emoji:'🧢', sizes:[], stock:true },
+
+  { id:56, name:'Gorro Negro Liso', brand:'Casual', category:'moda', sub:'gorros',
+    price:"6.000", desc:'Gorro negro liso para combinar con oufit casuales.',
+    image:'gorro_negro.png', emoji:'🧢', sizes:[], stock:false },
+  
+  
+
   // ─── TECH / BATERÍAS ──────────────────────────────────────────
-  { id:50, name:'Power Bank / MagSafe 15W', brand:'ChargePro', category:'tech', sub:'baterias',
+  { id:60, name:'Power Bank / MagSafe 15W', brand:'ChargePro', category:'tech', sub:'baterias',
     price:"9.500", desc:'Batería portátil de alta capacidad con mucha duración y soporte para vehiculos, también se puede utilizar sin necesidad de fijarlo a algún lugar.',
     image:'bateria_inalambrica.png', emoji:'🔋', sizes:[], stock:true },
 
   // ─── TECH / CELULARES ─────────────────────────────────────────
-  { id:53, name:'Headsets', brand:'Argom', category:'tech', sub:'celulares',
+  { id:61, name:'Headsets', brand:'Argom', category:'tech', sub:'celulares',
     price:"20.000", desc:'Audifonos Bluetooth color blancos con hasta 40 horas de bateria.',
     image:'headset.png', emoji:'📱', sizes:[], stock:true },
 
-  { id:54, name:'A21S', brand:'Samsung', category:'tech', sub:'celulares',
+  { id:62, name:'A21S', brand:'Samsung', category:'tech', sub:'celulares',
     price:"40.000", desc:'Está en muy buen estado, casi nuevo.',
     image:'a21s.png', emoji:'📱', sizes:[], stock:true },
 
   // ─── TECH / CELULARES
 
-  { id:60, name:'Luces Leds', brand:'', category:'tech', sub:'otros',
+  { id:70, name:'Luces Leds', brand:'', category:'tech', sub:'otros',
     price:"15.000", desc:'Luces Led fundamentales para decorar el cuarto y habitaciones.',
     image:'luces_led.jpg', emoji:'📱', sizes:["20m"], stock:true }
 
@@ -423,7 +447,8 @@ const CATEGORIES = [
       { id:'camisas',    label:'Camisas' },
       { id:'pantalones', label:'Pantalones' },
       { id:'zapatos',    label:'Zapatos' },
-      { id:'gorras',     label:'Gorras' }
+      { id:'gorras',     label:'Gorras' },
+      { id:'gorros',     label:'Gorros' }
     ]
   },
   {
@@ -437,7 +462,6 @@ const CATEGORIES = [
   }
 ];
 </script>
-
 <!-- NAV -->
 <nav>
   <div class="logo">Amber & Seven <span></span></div>
@@ -721,8 +745,5 @@ const waUrl = waLink('Hola! Quiero hacer un pedido');
   if(el) el.addEventListener('click',()=>window.open(waUrl,'_blank'));
 });
 </script>
-</body>
-</html>
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
